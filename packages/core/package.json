@@ -1,0 +1,24 @@
+{
+  "name": "@2fa-factor/core",
+  "version": "1.0.0",
+  "description": "Core 2FA authentication logic and algorithms",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["2fa", "authentication", "core", "totp"],
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

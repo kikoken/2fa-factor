@@ -1,0 +1,27 @@
+{
+  "name": "@2fa-factor/cli",
+  "version": "1.0.0",
+  "description": "CLI tool for 2FA management and testing",
+  "main": "dist/index.js",
+  "bin": {
+    "2fa": "dist/index.js"
+  },
+  "private": true,
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": ["2fa", "cli", "tool"],
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@2fa-factor/core": "workspace:*"
+  }
+}

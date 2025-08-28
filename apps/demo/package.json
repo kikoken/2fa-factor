@@ -1,0 +1,26 @@
+{
+  "name": "@2fa-factor/demo",
+  "version": "1.0.0",
+  "description": "Demo application showcasing 2FA implementation",
+  "main": "dist/index.js",
+  "private": true,
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": ["2fa", "demo", "example"],
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@2fa-factor/core": "workspace:*",
+    "@2fa-factor/client": "workspace:*",
+    "@2fa-factor/server": "workspace:*"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@2fa-factor/server",
+  "version": "1.0.0",
+  "description": "Server-side 2FA validation and API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["2fa", "server", "api", "validation"],
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@2fa-factor/core": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}
