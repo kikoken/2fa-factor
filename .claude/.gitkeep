@@ -1,2 +1,0 @@
-# This file ensures the .claude directory is tracked in git
-# while allowing other .claude contents to be ignored
