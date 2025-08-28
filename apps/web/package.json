@@ -1,0 +1,45 @@
+{
+  "name": "@2fa-factor/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@2fa-factor/core": "workspace:*",
+    "@2fa-factor/client": "workspace:*",
+    "@2fa-factor/ui": "workspace:*",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-dialog": "^1.1.2",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-tabs": "^1.1.1",
+    "@radix-ui/react-toast": "^1.2.2",
+    "@radix-ui/react-avatar": "^1.1.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.4",
+    "tailwindcss-animate": "^1.0.7",
+    "lucide-react": "^0.460.0",
+    "react-hook-form": "^7.53.2",
+    "@hookform/resolvers": "^3.10.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2",
+    "@types/node": "^24.3.0",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.14",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "14.2.15"
+  }
+}

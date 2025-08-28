@@ -5,19 +5,40 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "dev": "ts-node src/index.ts",
     "build": "tsc",
+    "start": "node dist/index.js",
     "clean": "rm -rf dist",
     "type-check": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["2fa", "server", "api", "validation"],
+  "keywords": ["2fa", "server", "api", "validation", "express"],
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^24.3.0",
-    "typescript": "^5.9.2"
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/speakeasy": "^2.0.10",
+    "@types/qrcode": "^1.5.5",
+    "typescript": "^5.9.2",
+    "ts-node": "^10.9.2"
   },
   "dependencies": {
-    "@2fa-factor/core": "workspace:*"
+    "@2fa-factor/core": "workspace:*",
+    "express": "^4.21.1",
+    "cors": "^2.8.5",
+    "helmet": "^8.0.0",
+    "express-rate-limit": "^7.4.1",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "speakeasy": "^2.0.0",
+    "qrcode": "^1.5.4",
+    "redis": "^4.7.0",
+    "duckdb": "^1.1.3",
+    "zod": "^3.23.8",
+    "dotenv": "^16.4.7"
   },
   "publishConfig": {
     "access": "restricted"

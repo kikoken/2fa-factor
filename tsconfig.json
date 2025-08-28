@@ -20,6 +20,8 @@
     { "path": "./packages/core" },
     { "path": "./packages/client" },
     { "path": "./packages/server" },
+    { "path": "./packages/ui" },
+    { "path": "./apps/web" },
     { "path": "./apps/demo" },
     { "path": "./apps/cli" }
   ]

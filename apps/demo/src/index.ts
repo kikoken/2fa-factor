@@ -4,7 +4,6 @@
 
 import { TwoFactorAuth } from '@2fa-factor/core';
 import { TwoFactorClient } from '@2fa-factor/client';
-import { TwoFactorServer } from '@2fa-factor/server';
 
 function runDemo(): void {
   console.log('🎯 2FA Factor Demo Application\n');
@@ -24,20 +23,16 @@ function runDemo(): void {
 
   console.log('📱 Client initialized');
 
-  // Initialize server
-  const server = new TwoFactorServer({
-    port: 3000
-  });
-
-  console.log('🔒 Server initialized');
+  console.log('🔒 Server: Express API available at http://localhost:3000');
 
   // Demo workflow
   console.log('\n🔄 Demo workflow:');
-  console.log('1. Generate secret (TODO)');
-  console.log('2. Create QR code (TODO)');
-  console.log('3. Verify token (TODO)');
+  console.log('1. Start API server: pnpm --filter @2fa-factor/server dev');
+  console.log('2. Start web app: pnpm --filter @2fa-factor/web dev');  
+  console.log('3. Visit: http://localhost:3001');
+  console.log('4. Test full 2FA flow with UI');
 
-  console.log('\n✅ Demo completed - ready for implementation!');
+  console.log('\n✅ Demo completed - ready for full stack development!');
 }
 
 if (require.main === module) {

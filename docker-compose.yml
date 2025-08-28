@@ -1,0 +1,100 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: 2fa-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  duckdb:
+    image: alpine:latest
+    container_name: 2fa-duckdb
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data/duckdb:/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    working_dir: /data
+    command: >
+      sh -c "
+        apk add --no-cache curl unzip python3 py3-pip &&
+        curl -L -o duckdb_cli.zip https://github.com/duckdb/duckdb/releases/latest/download/duckdb_cli-linux-amd64.zip &&
+        unzip duckdb_cli.zip &&
+        chmod +x duckdb &&
+        ./duckdb /data/2fa.db < /docker-entrypoint-initdb.d/init.sql &&
+        echo 'DuckDB initialized' &&
+        tail -f /dev/null
+      "
+    healthcheck:
+      test: ["CMD", "test", "-f", "/data/2fa.db"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    container_name: 2fa-web
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=file:/data/2fa.db
+    volumes:
+      - ./data/duckdb:/data
+    depends_on:
+      redis:
+        condition: service_healthy
+      duckdb:
+        condition: service_healthy
+    develop:
+      watch:
+        - action: sync
+          path: ./apps/web
+          target: /app/apps/web
+        - action: rebuild
+          path: ./apps/web/package.json
+
+  api:
+    build:
+      context: .
+      dockerfile: packages/server/Dockerfile
+    container_name: 2fa-api
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=file:/data/2fa.db
+      - JWT_SECRET=your-jwt-secret-key-here
+    volumes:
+      - ./data/duckdb:/data
+    depends_on:
+      redis:
+        condition: service_healthy
+      duckdb:
+        condition: service_healthy
+    develop:
+      watch:
+        - action: sync
+          path: ./packages/server
+          target: /app/packages/server
+
+volumes:
+  redis_data:
+    driver: local
+
+networks:
+  default:
+    name: 2fa-network
